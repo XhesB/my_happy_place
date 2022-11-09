@@ -14,7 +14,9 @@
         <tbody>
             {% for books in books %}
                 <tr>
-                    <td>{{ books.name }}</td>
+                    <td>
+                        <a href="{% url 'books:detail' books.id %}">{{ books.name }}</a>
+                    </td>
                     <td>{{ books.genre }}</td>
                     <td>{{ books.number_in_stock }}</td>
                     <td>{{ books.price }}</td>

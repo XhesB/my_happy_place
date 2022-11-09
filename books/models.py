@@ -9,7 +9,7 @@ class Author(models.Model):
     foreign_author = models.BooleanField(default=False)
 
     def __str__(self):
-        return "%s %s %s" % (self.first_name, self.last_name, self.foreign_author)
+        return "%s %s" % (self.first_name, self.last_name)
 
 class Genre(models.Model):
     genre_name = models.CharField(max_length=255)
@@ -42,7 +42,7 @@ class Books(models.Model):
     price = models.CharField(max_length=255)
     number_in_stock = models.IntegerField()
     # isbn = models.CharField(max_length=255)
-    translater = models.ForeignKey(Translater, on_delete=models.CASCADE)
+    translater = models.ForeignKey(Translater, on_delete=models.CASCADE, null=True, blank=True)
     publishing_house = models.ForeignKey(Publishing_house, on_delete=models.CASCADE)
 
     def __str__(self):

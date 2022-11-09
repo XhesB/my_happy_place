@@ -1,0 +1,18 @@
+{% extends 'books/base.html'%} 
+
+{% block content %}
+    <dl>
+        <dt>Book Name</dt>
+        <dd>{{ books.name }}</dd>
+        <dt>Author</dt>
+        <dd>{{ books.author }}</dd>
+        <dt>Genre</dt>
+        <dd>{{ books.genre }}</dd>
+        <dt>Stock</dt>
+        <dd>{{ books.number_in_stock }}</dd>
+        <dt>Price</dt>
+        <dd>{{ books.price }}</dd>
+        <dt>Publishing House</dt>
+        <dd>{{ books.publishing_house.publishing_house_name }}</dd>
+    </dl>
+{% endblock %}
