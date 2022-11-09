@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -28,17 +29,17 @@ class Publishing_house(models.Model):
     publishing_house_name = models.CharField(max_length=255)
     manager_first_name = models.CharField(max_length=255)
     manager_last_name = models.CharField(max_length=255)
-    # manager_contact_number = models.IntegerField()
+    manager_contact_number = models.CharField(max_length=255, null=True)
     manager_email = models.EmailField()
 
     def __str__(self):
-        return "'%s', '%s', '%s', '%s', '%s'" % (self.publishing_house_name, self.manager_first_name, self.manager_last_name, self.manager_email)
+        return "'%s', '%s', '%s', '%s', '%s'" % (self.publishing_house_name, self.manager_first_name, self.manager_last_name, self.manager_contact_number, self.manager_email)
 
 class Books(models.Model):
     name = models.CharField(max_length=255)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    price = models.CharField(max_length = 255)
+    price = models.CharField(max_length=255)
     number_in_stock = models.IntegerField()
     # isbn = models.CharField(max_length=255)
     translater = models.ForeignKey(Translater, on_delete=models.CASCADE)
@@ -59,3 +60,7 @@ class Client(models.Model):
 
 class Staff(models.Model):
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "%s" % (self.name)
+
