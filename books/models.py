@@ -1,7 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import BaseUserManager
+from django.conf import settings
+from django.db.models import Sum, F
 
 # Create your models here.
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=255)
@@ -56,7 +60,7 @@ class Client(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return "%s %s %s %s %s" % (self.name, self.surname, self.birthday, self.email)
+        return "%s %s %s %s" % (self.name, self.surname, self.birthday, self.email)
 
 class Staff(models.Model):
     name = models.CharField(max_length=255)

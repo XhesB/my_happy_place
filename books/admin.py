@@ -3,6 +3,7 @@ from .models import Author, Books, Publishing_house, Translater, Genre, Client, 
 
 # Register your models here.
 
+
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('id', 'genre_name')
 
@@ -32,3 +33,6 @@ admin.site.register(Genre, GenreAdmin)
 admin.site.register(Publishing_house, Publishing_house_Admin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Staff, StaffAdmin)
+
+
+
