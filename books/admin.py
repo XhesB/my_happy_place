@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Books, Publishing_house, Translater, Genre, Client, Staff
+from .models import Author, Books, Publishing_house, Translater, Genre, Client, Staff, Invoice, InvoiceItem
 
 # Register your models here.
 
@@ -25,6 +25,12 @@ class ClientAdmin(admin.ModelAdmin):
 class StaffAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
 
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ("id", "client", "date")
+
+class InvoiceItemAdmin(admin.ModelAdmin):
+    list_display = ("id", "book", "invoice", "quantity", "price", "total")
+
 
 admin.site.register(Books, BooksAdmin)
 admin.site.register(Author, AuthorAdmin)
@@ -33,6 +39,8 @@ admin.site.register(Genre, GenreAdmin)
 admin.site.register(Publishing_house, Publishing_house_Admin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Staff, StaffAdmin)
+admin.site.register(Invoice, InvoiceAdmin)
+admin.site.register(InvoiceItem, InvoiceItemAdmin)
 
 
 

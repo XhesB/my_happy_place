@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
 from django.db.models import Sum, F
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -67,4 +68,25 @@ class Staff(models.Model):
 
     def __str__(self):
         return "%s" % (self.name)
+
+class Invoice(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def total(self):
+        return self.invoiceitem_set.all().aggregate(total=Sum(F('quantity') * F('price')))
+
+    def __str__(self):
+        return "%s %s" % (self.client, self.date)
+
+class InvoiceItem(models.Model):
+    book = models.ForeignKey('books.Books', on_delete=models.CASCADE)
+    invoice = models.ForeignKey('books.Invoice', on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    price = models.IntegerField(default=0)
+
+    @property
+    def total(self):
+        return self.price * self.quantity
 
